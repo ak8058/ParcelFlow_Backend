@@ -10,6 +10,8 @@ import { swaggerSpec } from "./config/swagger.js";
 import { errorHandler, notFoundHandler } from "./middlewares/errorHandler.js";
 import { globalLimiter } from "./middlewares/rateLimiter.js";
 
+// Router files
+import authRoutes from "./routes/authRoutes.js";
 dotenv.config();
 const app = express();
 app.use(cookieParser());
@@ -27,6 +29,7 @@ app.get("/health", (req, res) => {
   res.status(200).json({ status: "ok", message: "Server Is OK" });
 });
 
+app.use("/api/auth", authRoutes);
 app.use(notFoundHandler);
 app.use(errorHandler);
 
