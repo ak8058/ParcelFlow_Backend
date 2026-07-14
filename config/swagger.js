@@ -14,10 +14,10 @@ const swaggerDefinition = {
     },
   ],
   components: {
-    securitySchema: {
+    securitySchemes: {
       bearerAuth: {
         type: "http",
-        schema: "bearer",
+        scheme: "bearer",
         bearerFormat: "JWT",
       },
     },

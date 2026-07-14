@@ -5,7 +5,7 @@ export const protect = async (req, res, next) => {
   let token;
   if (
     req.headers.authorization &&
-    req.headers.authorization.startWith("Bearer")
+    req.headers.authorization.startsWith("Bearer")
   ) {
     token = req.headers.authorization.split(" ")[1];
   }
@@ -27,7 +27,8 @@ export const protect = async (req, res, next) => {
 };
 // 2. Authorization
 export const adminOnly = (req, res, next) => {
-  if (!req.user || !req.user.role !== "admin") {
+  if (!req.user || req.user.role !== "admin") {
     return res.status(403).json({ message: "Access denied. Admins only." });
   }
+  next();
 };
